@@ -29,19 +29,19 @@ jobs:
       - name: Set version from file
         run: |
           echo "VERSION=$(cat VERSION)" >> "$GITHUB_ENV"
-      - name: Delete outdated tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git fetch --tags
-          for tag in $(git tag); do
-            echo $tag
-            if [[ "${tag}" == "${VERSION}" ]]; then
-              gh release delete $VERSION
-              git tag --delete $VERSION
-              git push --delete origin $VERSION
-            fi
-          done
+      # - name: Delete outdated tag
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     git fetch --tags
+      #     for tag in $(git tag); do
+      #       echo $tag
+      #       if [[ "${tag}" == "${VERSION}" ]]; then
+      #         gh release delete $VERSION
+      #         git tag --delete $VERSION
+      #         git push --delete origin $VERSION
+      #       fi
+      #     done
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
