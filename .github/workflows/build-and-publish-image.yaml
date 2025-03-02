@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - Dockerfile
-      - entrypoint.sh
+      - entrypoint.py
       - VERSION
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
@@ -59,7 +59,7 @@ jobs:
           build-args: BW_CLI_VERSION=${{ env.VERSION }}
           context: .
           push: true
-          tags: ghcr.io/charlesthomas/bitwarden-cli:${{ env.VERSION }}
+          tags: ghcr.io/blevinn/bitwarden-cli:${{ env.VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Create tag
         uses: actions/github-script@v6
