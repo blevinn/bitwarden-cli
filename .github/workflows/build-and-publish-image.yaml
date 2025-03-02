@@ -7,6 +7,7 @@ on:
     branches:
       - main
     paths:
+      - '.github/workflows/build-and-publish-image.yaml'
       - Dockerfile
       - entrypoint.py
       - VERSION
